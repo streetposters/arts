@@ -75,8 +75,8 @@ function renderHome(){
 function card(p){
   const on=isSel(p.n);
   return `<div class="card${on?" on":""}" data-n="${p.n}">`+
-    `<button class="art" type="button" data-open="${p.n}" aria-label="عرض البوسترز ${esc(p.code)} بحجم أكبر"><span class="num">${pad(p.i)}</span>${art(p)}</button>`+
-    `<button class="pick" type="button" data-toggle="${p.n}" aria-pressed="${on}" aria-label="اختيار البوسترز ${esc(p.code)}">${on?ICON.check:ICON.plus}</button>`+
+    `<button class="art" type="button" data-open="${p.n}" aria-label="عرض البوستر ${esc(p.code)} بحجم أكبر"><span class="num">${pad(p.i)}</span>${art(p)}</button>`+
+    `<button class="pick" type="button" data-toggle="${p.n}" aria-pressed="${on}" aria-label="اختيار البوستر ${esc(p.code)}">${on?ICON.check:ICON.plus}</button>`+
     `<div class="cap"><b>${esc(p.ar)}</b><span class="lat">${esc(p.code)}</span></div></div>`;
 }
 function pagerHTML(){
@@ -134,20 +134,20 @@ function buildModal(){
   sheet.innerHTML=
   `<button class="close" type="button" data-act="close" aria-label="إغلاق">${ICON.x}</button>`+
   `<div class="stage"><span class="tag">${esc(p.code)}</span>`+
-    `<button class="navbtn prev" type="button" data-act="prev" aria-label="البوسترز السابقة">${ICON.chevR}</button>`+
-    `<button class="navbtn next" type="button" data-act="next" aria-label="البوسترز التالية">${ICON.chevL}</button>`+
+    `<button class="navbtn prev" type="button" data-act="prev" aria-label="البوستر السابق">${ICON.chevR}</button>`+
+    `<button class="navbtn next" type="button" data-act="next" aria-label="البوستر التالي">${ICON.chevL}</button>`+
     `<div class="hang"><div class="poster">${art(p)}</div></div></div>`+
   `<div class="panel">`+
     `<div class="ph"><span class="kick"><span class="lat">${esc(cat.en)}</span></span><h2 id="mTitle">${esc(p.ar)}</h2><span class="en">${esc(p.code)} · رقم ${p.n}</span></div>`+
     `<button class="btn" type="button" id="mToggle" data-act="toggle"></button>`+
-    `<p class="hint">استخدم السهمين للتنقل بين البوسترز هذا التصنيف واختيار أكثر من بوستر.</p>`+
+    `<p class="hint">استخدم السهمين للتنقل بين بوسترز هذا التصنيف واختيار أكثر من بوستر.</p>`+
   `</div>`;
   updateModal();
 }
 function updateModal(){
   const b=$("#mToggle");if(!b||!state.modal)return;
   const on=isSel(state.modal.n);
-  b.textContent=on?"تم الاختيار، اضغط للإلغاء":"اختيار هذه البوسترز";
+  b.textContent=on?"تم الاختيار، اضغط للإلغاء":"اختيار هذا البوستر";
   b.classList.toggle("ghost",on);
   b.setAttribute("aria-pressed",String(on));
 }
@@ -188,7 +188,7 @@ sheet.addEventListener("click",e=>{
 overlay.addEventListener("click",e=>{if(e.target===overlay)closeModal()});
  
 /* ---------- Selection list + WhatsApp ---------- */
-/* نص الرسالة: اسم البوسترز + رقمها + كودها + التصنيف */
+/* نص الرسالة: اسم البوستر + رقمها + كودها + التصنيف */
 function orderText(withLinks){
   const lines=["السلام عليكم، اخترت هذه البوسترز من المعرض:",""];
   state.sel.forEach((n,i)=>{
