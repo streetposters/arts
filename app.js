@@ -196,7 +196,6 @@ function orderText(withLinks){
     lines.push((i+1)+") "+p.ar+" | رقم "+p.n+" | "+p.code+" ("+catOf(p).en+")");
     if(withLinks&&p.img&&isOnline())lines.push(absUrl(p.img));
   });
-  if(state.name.trim())lines.push("","الاسم: "+state.name.trim());
   return lines.join("\n");
 }
 function waTextLink(){
@@ -276,7 +275,7 @@ $("#openCart").addEventListener("click",openCart);
 $("#selOpen").addEventListener("click",openCart);
 $("#closeCart").addEventListener("click",closeCart);
 scrim.addEventListener("click",closeCart);
-$("#cName").addEventListener("input",e=>{state.name=e.target.value;updateOrderLink()});
+const nameInp=$("#cName");if(nameInp)(nameInp.closest("label,.field")||nameInp).hidden=true;
 $("#clearAll").addEventListener("click",()=>{state.sel=[];saveSel();syncSelection()});
 /* ---------- Page wiring ---------- */
 $("#catpage").addEventListener("click",e=>{
