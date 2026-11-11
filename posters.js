@@ -20,7 +20,7 @@ const PER_CAT=36;   /* 3 pages x 12 posters */
  
 const IMAGES={
   cars:[
-    "posters.cars/cars1.jpg",
+    "posters.cars/cars1.png",
     "posters.cars/cars2.jpg",
     "posters.cars/cars3.jpg",
     "posters.cars/cars4.jpg",
