@@ -210,7 +210,7 @@ function updateOrderLink(){
 
 /* الزر الوحيد: إرسال الأسماء وروابط الصور إلى واتساب (بدون تحميل) */
 const waBtn=$("#waLink");
-waBtn.textContent="أرسل اختياراتي إلينا عبر واتساب";
+waBtn.textContent="إرسال اختياراتي إلى واتساب";
 const oldCopy=$("#copyOrder");if(oldCopy)oldCopy.hidden=true;
 waBtn.addEventListener("click",e=>{
   e.preventDefault();
