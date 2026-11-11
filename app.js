@@ -208,30 +208,13 @@ function updateOrderLink(){
   a.href=has?waTextLink():"#";
 }
 
-/* تحميل الصور المختارة إلى جهاز الزبون (كل صورة باسم كودها) */
-function downloadImages(){
-  const list=state.sel.map(byN).filter(p=>p&&p.img);
-  list.forEach((p,i)=>setTimeout(()=>{
-    const ext=(p.img.split("?")[0].split(".").pop()||"jpg").toLowerCase();
-    const a=document.createElement("a");
-    a.href=p.img;
-    a.download=p.code+"."+ext;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-  },i*350));
-  return list.length;
-}
-
-/* الزر الوحيد: حمّل الصور وأرسلها إلينا */
+/* الزر الوحيد: إرسال الأسماء وروابط الصور إلى واتساب (بدون تحميل) */
 const waBtn=$("#waLink");
-waBtn.textContent="حمّل الصور وأرسلها إلينا";
+waBtn.textContent="أرسل اختياراتي إلينا عبر واتساب";
 const oldCopy=$("#copyOrder");if(oldCopy)oldCopy.hidden=true;
 waBtn.addEventListener("click",e=>{
   e.preventDefault();
   if(!state.sel.length)return;
-  const n=downloadImages();
-  toast(n?"تم تحميل "+n+" صورة، أرفقها في محادثة واتساب":"لا توجد صور للتحميل");
   const w=window.open(waTextLink(),"_blank");
   if(!w)location.href=waTextLink();
 });

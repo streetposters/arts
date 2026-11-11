@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Reem+Kufi:wght@500;600;700&display=swap">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 <div id="app" dir="rtl" lang="ar">
@@ -26,13 +26,13 @@
   <section class="hero"><div class="wrap">
     <p class="eyebrow" id="eyebrow"></p>
     <h1>اختر نوع البوسترز</h1>
-    <p class="lede">اضغط على أحد التصنيفات لترى البوسترز الخاصة به، ثم اختر ما يعجبك وأرسل اختياراتك إلينا عبر واتساب.</p>
+    <p class="lede">اضغط على أحد التصنيفات لترى البوسترز الخاصة به، ثم اختر ما يعجبك، أرسلها إلينا عبر واتساب.</p>
   </div></section>
   <div class="wrap">
     <ol class="steps">
       <li>افتح تصنيفاً</li>
       <li>اختر البوسترز التي تعجبك</li>
-      <li>أرسلها عبر واتساب</li>
+      <li>أرسلها إلينا عبر واتساب</li>
     </ol>
     <nav aria-label="التصنيفات"><ol class="cats" id="cats"></ol></nav>
   </div>
@@ -59,7 +59,7 @@
     <a class="brand" href="#" aria-label="Street Posters، الصفحة الرئيسية">
       <img src="logo.png" alt="Street Posters" style="height:60px;width:auto;display:block;">
     </a>
-    <p>اختر البوسترز وأرسلها إلينا عبر واتساب، ونتواصل معك لتأكيد الطلب.</p>
+    <p>اختر البوسترز، أرسلها إلينا عبر واتساب، ونتواصل معك لتأكيد الطلب.</p>
   </div>
   <div class="wa">
     <span class="num2" dir="ltr" id="waNum"></span>
@@ -113,15 +113,10 @@
   <div class="dh"><h3>مختاراتي</h3><button class="x" type="button" id="closeCart" aria-label="إغلاق"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
   <div class="items" id="items"></div>
   <div class="df" id="df">
-    <div class="fields">
-      <label for="cName">اسمك (اختياري)<input id="cName" type="text" autocomplete="name"></label>
-    </div>
     <div class="sumrow"><span>عدد البوسترز</span><b id="cartTotal">0</b></div>
-    <a class="btn off" id="waLink" href="#" target="_blank" rel="noopener">أرسل اختياراتي كصور عبر واتساب</a>
-    <button class="btn ghost" id="copyOrder" type="button">نسخ نص الرسالة</button>
+    <a class="btn off" id="waLink" href="#" target="_blank" rel="noopener">أرسل اختياراتي إلينا عبر واتساب</a>
     <button class="linkbtn" id="clearAll" type="button">مسح كل الاختيارات</button>
-    <textarea id="orderFallback" readonly hidden aria-label="نص الرسالة"></textarea>
-    <p class="note">على الهاتف تظهر قائمة المشاركة، اختر واتساب وسترسل الصور مباشرة. وإن لم تتوفر، تُرسل الرموز مع روابط الصور.</p>
+    <p class="note">ستصلنا أسماء البوسترز المختارة مع روابط صورها.</p>
   </div>
 </aside>
  
@@ -129,7 +124,7 @@
  
 </div>
  
-<script src="posters.js"></script>
-<script src="app.js"></script>
+<script src="posters.js?v=3"></script>
+<script src="app.js?v=3"></script>
 </body>
 </html>
