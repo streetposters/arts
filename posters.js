@@ -404,7 +404,7 @@ CATS.forEach((c,ci)=>{
   FILL.forEach(a=>{if(pool.length<12&&!pool.includes(a))pool.push(a)});
   for(let i=1;i<=PER_CAT;i++){
     const k=(i-1)%12,t=Math.floor((i-1)/12);
-    const p={cat:c.id,i:i,n:ci*PER_CAT+i,code:c.code+"-"+String(i).padStart(2,"0"),ar:"لوحة "+i,en:c.en,tone:TN[(t+k)%3]};
+    const p={cat:c.id,i:i,n:ci*PER_CAT+i,code:c.code+"-"+String(i).padStart(2,"0"),ar:" بوستر "+i,en:c.en,tone:TN[(t+k)%3]};
     if(c.id==="expressions"){p.art="quote";p.q=PHRASES[k]}else p.art=pool[k];
     const img=(IMAGES[c.id]||[])[i-1];
     if(img)p.img=img;
