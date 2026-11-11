@@ -207,31 +207,6 @@ function updateOrderLink(){
   a.classList.toggle("off",!has);
   a.setAttribute("aria-disabled",String(!has));
   a.href=has?waTextLink():"#";
-  $("#copyOrder").disabled=!has;
-  const d=$("#dlImages");if(d)d.disabled=!has;
-}
-
-/* إرسال الصور كملفات حقيقية عبر قائمة المشاركة (واتساب) - يعمل على الجوال */
-async function shareImages(){
-  if(!navigator.share||!navigator.canShare||!isOnline())return false;
-  const list=state.sel.map(byN).filter(p=>p&&p.img);
-  if(!list.length)return false;
-  try{
-    const files=await Promise.all(list.map(async p=>{
-      const r=await fetch(p.img);
-      if(!r.ok)throw new Error("fetch");
-      const b=await r.blob();
-      const type=b.type||"image/jpeg";
-      const ext=type.split("/")[1].replace("jpeg","jpg");
-      return new File([b],p.code+"."+ext,{type});
-    }));
-    if(!navigator.canShare({files}))return false;
-    await navigator.share({files,text:orderText(false)});
-    return true;
-  }catch(err){
-    if(err&&err.name==="AbortError")return true;
-    return false;
-  }
 }
 
 /* تحميل الصور المختارة إلى جهاز الزبون (كل صورة باسم كودها) */
@@ -249,33 +224,15 @@ function downloadImages(){
   return list.length;
 }
 
-/* زر "تحميل الصور": يُنشأ تلقائياً بجانب زر النسخ إن لم يكن موجوداً في index.html */
-(function ensureDlButton(){
-  if($("#dlImages"))return;
-  const cb=$("#copyOrder");
-  if(!cb||!cb.parentNode)return;
-  const b=document.createElement("button");
-  b.type="button";
-  b.id="dlImages";
-  b.className="btn ghost";
-  b.textContent="تحميل الصور";
-  cb.parentNode.insertBefore(b,cb.nextSibling);
-})();
-const dlBtn=$("#dlImages");
-if(dlBtn)dlBtn.addEventListener("click",()=>{
-  if(!state.sel.length)return;
-  const n=downloadImages();
-  toast(n?"جاري تحميل "+n+" صورة...":"لا توجد صور للتحميل");
-});
-
-$("#waLink").addEventListener("click",async e=>{
+/* الزر الوحيد: حمّل الصور وأرسلها إلينا */
+const waBtn=$("#waLink");
+waBtn.textContent="حمّل الصور وأرسلها إلينا";
+const oldCopy=$("#copyOrder");if(oldCopy)oldCopy.hidden=true;
+waBtn.addEventListener("click",e=>{
   e.preventDefault();
   if(!state.sel.length)return;
-  toast("جاري تجهيز الصور...");
-  const done=await shareImages();
-  if(done)return;
-  /* الكمبيوتر: واتساب لا يقبل مرفقات من موقع، لذلك نحمّل الصور ثم نفتح المحادثة بالنص */
-  if(downloadImages())toast("تم تحميل الصور، أرفقها في محادثة واتساب");
+  const n=downloadImages();
+  toast(n?"تم تحميل "+n+" صورة، أرفقها في محادثة واتساب":"لا توجد صور للتحميل");
   const w=window.open(waTextLink(),"_blank");
   if(!w)location.href=waTextLink();
 });
@@ -321,12 +278,6 @@ $("#closeCart").addEventListener("click",closeCart);
 scrim.addEventListener("click",closeCart);
 $("#cName").addEventListener("input",e=>{state.name=e.target.value;updateOrderLink()});
 $("#clearAll").addEventListener("click",()=>{state.sel=[];saveSel();syncSelection()});
-$("#copyOrder").addEventListener("click",async()=>{
-  const t=orderText(true);
-  try{await navigator.clipboard.writeText(t);toast("تم نسخ نص الرسالة")}
-  catch(err){const ta=$("#orderFallback");ta.hidden=false;ta.value=t;ta.focus();ta.select();toast("حدّد النص المعروض وانسخه")}
-});
- 
 /* ---------- Page wiring ---------- */
 $("#catpage").addEventListener("click",e=>{
   const t=e.target.closest("[data-toggle]");
