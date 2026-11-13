@@ -238,3 +238,16 @@ a{color:inherit}
 /* رقم التصنيف على غلاف الصفحة الرئيسية */
 .cat-card .cover{position:relative}
 .cat-card .cover .num{font-size:12px;padding:3px 8px}
+/* بوسترز أكبر على الهاتف */
+.grid.page{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 12px}
+@media(min-width:700px){.grid.page{grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 18px}}
+@media(min-width:1000px){.grid.page{grid-template-columns:repeat(4,minmax(0,1fr));gap:32px 20px}}
+.grid.page .pick{width:40px;height:40px}
+
+/* نافذة المعاينة: ملء الشاشة على الهاتف */
+@media(max-width:760px){
+  .overlay{padding:0}
+  .sheet{width:100%;height:100%;border-radius:0;align-content:start}
+  .stage{padding:60px 12px 24px}
+  .hang{height:min(560px,68vh)}
+}
